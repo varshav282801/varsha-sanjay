@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Original full-resolution uploads — kept locally, not published.
+# Everything in a GitHub Pages repo is publicly downloadable, and these
+# aren't used by the site (the optimised backdrop-*.jpg files are).
+assets/img/6116187327232151015.jpg
+assets/img/6321022615455207847.jpg
