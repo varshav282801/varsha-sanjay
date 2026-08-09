@@ -12,28 +12,33 @@
 (function () {
   'use strict';
 
-  var input = document.getElementById('rsvp-names');
-  var link = document.getElementById('rsvp-send');
-  if (!input || !link) return;
+  var links = document.querySelectorAll('.rsvp__btn');
+  if (!links.length) return;
 
-  var number = link.getAttribute('data-whatsapp');
+  links.forEach(function (link) {
+    var group = link.closest('.loccard__group');
+    var input = group ? group.querySelector('.rsvp__input') : null;
+    if (!input) return;
 
-  function update() {
-    var who = input.value.trim();
-    var message = who
-      ? "Hi! I'd like to RSVP for Varsha & Sanjay's wedding — " + who + ' will be coming.'
-      : "Hi! I'd like to RSVP for Varsha & Sanjay's wedding.";
-    link.href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(message);
-  }
+    var number = link.getAttribute('data-whatsapp');
 
-  input.addEventListener('input', update);
+    function update() {
+      var who = input.value.trim();
+      var message = who
+        ? "Hi! I'd like to RSVP for Varsha & Sanjay's wedding — " + who + ' will be coming.'
+        : "Hi! I'd like to RSVP for Varsha & Sanjay's wedding.";
+      link.href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(message);
+    }
 
-  // Enter in the box should send, the way a real form would
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); update(); link.click(); }
+    input.addEventListener('input', update);
+
+    // Enter in the box should send, the way a real form would
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); update(); link.click(); }
+    });
+
+    update();
   });
-
-  update();
 })();
 
 (function () {
