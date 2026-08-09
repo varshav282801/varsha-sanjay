@@ -282,7 +282,7 @@ a { color: var(--accent); }
   bottom: max(1.75rem, env(safe-area-inset-bottom));
   left: 50%;
   translate: -50% 0;
-  width: 1px;
+  width: 3px;
   height: clamp(2.5rem, 7vh, 4rem);
   background: rgba(246, 241, 232, 0.4);
   overflow: hidden;
@@ -500,7 +500,12 @@ a { color: var(--accent); }
    Location — postcard
    ========================================================================= */
 
-.loc { padding-block: clamp(2.25rem, 6vw, 4.5rem); }
+.loc {
+  padding-block: clamp(2.25rem, 6vw, 4.5rem);
+  background-image: url("../img/backdrop-postcard.jpg");
+  background-size: cover;
+  background-position: center;
+}
 
 /* The shared sheet-of-paper look, used by both the day cards and the
    location card. Layout is left to whichever class sits alongside it. */
@@ -515,22 +520,70 @@ a { color: var(--accent); }
    match the two day cards. It has no header — the venue name sits in the
    right half. Left half is the RSVP, right half is venue and accommodation. */
 
-.loccard__body {
+.loccard__stack {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(1rem, 4vw, 3rem);
   align-items: stretch;
 }
+.loccard__stack::before {
+  content: "";
+  position: absolute;
+  top: clamp(0.4rem, 2vh, 1rem);
+  bottom: clamp(0.4rem, 2vh, 1rem);
+  left: 50%;
+  width: 1px;
+  background: var(--hairline);
+  pointer-events: none;
+}
 
-/* Each half is a column of groups spread over the card's height, so the
-   card fills rather than ending in dead space — the same treatment the day
-   cards get. The groups are what stop the address drifting away from its
-   button. */
-.loccard__aside,
-.loccard__venue {
+.locpair { display: contents; }
+
+/* Each pair contributes media on the left and content on the right. */
+.locpair__media,
+.locpair__content {
   display: flex;
   flex-direction: column;
   gap: clamp(1.1rem, 4.5vw, 2rem);
+}
+.locpair__media {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding-block: clamp(0.8rem, 2vw, 1.6rem);
+}
+.locpair__media .loccard__group {
+  width: 100%;
+  max-width: 100%;
+}
+.loccard__note {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(-11deg);
+  transform-origin: center;
+  margin-bottom: clamp(0.8rem, 2vw, 1.4rem);
+}
+.locpair__media .loccard__note { margin-bottom: 0; }
+
+@media (min-width: 780px) {
+  .locpair__media .loccard__note { transform: translateY(130px) rotate(-11deg); }
+}
+
+.loccard__signoff {
+  display: block;
+  width: 100%;
+  max-width: 56%;
+  height: auto;
+  transform: rotate(-11deg);
+  transform-origin: center;
+  margin-inline: auto;
+  margin-top: clamp(0.4rem, 1.4vw, 0.9rem);
+}
+.locpair__media .loccard__signoff {
+  margin-top: clamp(0.2rem, 0.7vw, 0.45rem);
+  margin-inline: auto;
 }
 
 .loccard__title {
@@ -600,12 +653,67 @@ a { color: var(--accent); }
    RSVP. The card also drops to its own shorter portrait ratio, since forcing
    it to the day cards' 1.7 left a void in the middle. */
 @media (max-width: 779px) {
-  .loccard { min-height: calc((100vw - 2.5rem) * 1.15); }
-  .loccard__body {
-    flex: 1;
+  .loccard {
+    min-height: auto;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .loccard__stack {
+    display: grid;
     grid-template-columns: 1fr;
-    align-content: start;
-    gap: clamp(1.4rem, 5vw, 2rem);
+    gap: clamp(0.9rem, 4vw, 1.4rem);
+  }
+  .loccard__stack::before { display: none; }
+
+  .locpair {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(0.7rem, 3vw, 1.1rem);
+    align-items: center;
+    min-height: calc((100vw - 2.5rem) * 0.72);
+    padding: clamp(0.9rem, 3.8vw, 1.2rem);
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 18px 40px -28px rgba(42,35,32,0.5);
+  }
+  .locpair::before {
+    content: "";
+    position: absolute;
+    top: clamp(0.35rem, 1.6vw, 0.7rem);
+    bottom: clamp(0.35rem, 1.6vw, 0.7rem);
+    left: 50%;
+    width: 1px;
+    background: var(--hairline);
+    pointer-events: none;
+  }
+
+  .locpair__media,
+  .locpair__content {
+    justify-content: center;
+    align-items: stretch;
+    padding-block: 0;
+    gap: clamp(0.8rem, 3vw, 1.1rem);
+  }
+
+  .locpair__media .loccard__group { max-width: 100%; }
+
+  .locpair__media .loccard__note {
+    max-width: 100%;
+    margin: 0 auto;
+    transform: rotate(-11deg);
+  }
+  .locpair__media .loccard__signoff {
+    max-width: 72%;
+    margin: 0 auto;
+    transform: rotate(-11deg);
+  }
+
+  .locpair__content .loccard__blurb,
+  .locpair__content address {
+    max-width: none;
   }
 }
 

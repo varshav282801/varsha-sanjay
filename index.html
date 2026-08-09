@@ -189,47 +189,47 @@
 <section class="loc" id="location" aria-labelledby="loc-title">
   <div class="wrap">
     <article class="panel daycard loccard reveal">
-      <div class="loccard__body">
-
-        <!-- Venue and directions -->
-        <div class="loccard__venue">
-          <div class="loccard__group">
-            <p class="loccard__label">Address</p>
-            <h2 class="script loccard__title" id="loc-title">The Peacock Grove</h2>
-            <address>On, Byalkere Rd, Yelahanka, Bengaluru, Bylakere, Karnataka 560090, India</address>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Peacock%20Grove%2C%20Byalkere%20Rd%2C%20Yelahanka%2C%20Bengaluru%2C%20Bylakere%2C%20Karnataka%20560090%2C%20India" target="_blank" rel="noopener">
-              Open in Google Maps
-            </a>
+      <div class="loccard__stack">
+        <div class="locpair">
+          <div class="locpair__media">
+            <img class="loccard__note" src="assets/img/handwrite-1.png" alt="">
+          </div>
+          <div class="locpair__content">
+            <div class="loccard__group">
+              <p class="loccard__label">Address</p>
+              <h2 class="script loccard__title" id="loc-title">The Peacock Grove</h2>
+              <address>On, Byalkere Rd, Yelahanka, Bengaluru, Bylakere, Karnataka 560090, India</address>
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Peacock%20Grove%2C%20Byalkere%20Rd%2C%20Yelahanka%2C%20Bengaluru%2C%20Bylakere%2C%20Karnataka%20560090%2C%20India" target="_blank" rel="noopener">
+                Open in Google Maps
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Accommodation, then RSVP beneath it.
-             The RSVP button is a plain WhatsApp link carrying a generic
-             message, so it works even with JavaScript off. When JS is on,
-             main.js folds whatever is typed in the box into the message.
-             To change the number, edit BOTH the data-whatsapp attribute and
-             the href below (country code first, no +, spaces or dashes). -->
-        <div class="loccard__aside">
-          <div class="loccard__group">
-            <p class="loccard__label">Accommodation</p>
-            <p class="loccard__blurb">Should you need somewhere to stay, do let us know &mdash; we would be very glad to arrange it.</p>
+        <div class="locpair">
+          <div class="locpair__media">
+            <img class="loccard__signoff" src="assets/img/handwrite-2.png" alt="">
           </div>
-
-          <div class="loccard__group">
-            <p class="loccard__label">RSVP</p>
-            <p class="loccard__blurb">Tell us you are coming, and who you are bringing with you.</p>
-            <label class="loccard__field" for="rsvp-names">Your name, and anyone joining you</label>
-            <input class="rsvp__input" id="rsvp-names" type="text"
-                   placeholder="Your name and guests" autocomplete="name">
-            <a class="btn rsvp__btn" id="rsvp-send"
-               data-whatsapp="16043606514"
-               href="https://wa.me/16043606514?text=Hi%21%20I%27d%20like%20to%20RSVP%20for%20Varsha%20%26%20Sanjay%27s%20wedding."
-               target="_blank" rel="noopener">
-              RSVP on WhatsApp
-            </a>
+          <div class="locpair__content">
+            <div class="loccard__group">
+              <p class="loccard__label">Accommodation</p>
+              <p class="loccard__blurb">If you need accomodation, please let us know. We would be very glad to arrange it!</p>
+            </div>
+            <div class="loccard__group">
+              <p class="loccard__label">RSVP</p>
+              <p class="loccard__blurb">Please let us know if you will be joining us!</p>
+              <label class="loccard__field" for="rsvp-names">Your name, and anyone joining you</label>
+              <input class="rsvp__input" id="rsvp-names" type="text"
+                     placeholder="Your name and guests" autocomplete="name">
+              <a class="btn rsvp__btn" id="rsvp-send"
+                 data-whatsapp="16043606514"
+                 href="https://wa.me/16043606514?text=Hi%21%20I%27d%20like%20to%20RSVP%20for%20Varsha%20%26%20Sanjay%27s%20wedding."
+                 target="_blank" rel="noopener">
+                RSVP on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
-
       </div>
     </article>
   </div>
@@ -240,7 +240,6 @@
 <footer class="foot">
   <p class="script foot__names">Varsha &amp; Sanjay</p>
   <p class="foot__meta">28 &amp; 29 November 2026 &middot; Bangalore</p>
-  <p class="foot__meta foot__meta--small">Questions? <a href="mailto:hello@example.com">hello@example.com</a></p>
 </footer>
 
 <script src="assets/js/main.js?v=2" defer></script>
