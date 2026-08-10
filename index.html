@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Varsha &amp; Sanjay — 28 &amp; 29 November 2026">
 <meta property="og:description" content="Peacock Grove, Bangalore. Two days, all the people we love.">
-<meta property="og:image" content="assets/img/hero-image.jpg">
+<meta property="og:image" content="assets/img/hero-image-2.jpg">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='25' font-size='24'>%E2%9C%A6</text></svg>">
 
@@ -22,11 +22,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Tangerine:wght@400;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Tangerine:wght@400;700&display=swap"></noscript>
 
-<link rel="preload" as="image" href="assets/img/hero-image.jpg">
+<link rel="preload" as="image" href="assets/img/hero-image-2.jpg">
 <!-- The ?v= is a cache-buster. Browsers hold on to a stylesheet hard, so
      after editing style.css bump this number (v=2, v=3 …) and everyone gets
      the new one immediately instead of a stale copy. -->
-<link rel="stylesheet" href="assets/css/style.css?v=11">
+<link rel="stylesheet" href="assets/css/style.css?v=20">
 
 <!-- Marks that JS is available, so the scroll-reveal animation only hides
      content on browsers that can bring it back. Must stay inline. -->
@@ -47,9 +47,9 @@
      ========================================================================= -->
 <header class="hero hero--plate" id="top">
   <picture class="hero__media">
-    <img src="assets/img/hero-image.jpg"
+    <img src="assets/img/hero-image-2.jpg"
          alt="Varsha and Sanjay sitting under a striped beach umbrella, printed on a save-the-date card resting on sand"
-         width="1280" height="1024" fetchpriority="high" decoding="async">
+         width="1402" height="1122" fetchpriority="high" decoding="async">
   </picture>
 
   <div class="hero__scrim" aria-hidden="true"></div>
@@ -188,48 +188,49 @@
      ========================================================================= -->
 <section class="loc" id="location" aria-labelledby="loc-title">
   <div class="wrap">
-    <article class="panel daycard loccard reveal">
-      <div class="loccard__stack">
-        <div class="locpair">
-          <div class="locpair__media">
-            <img class="loccard__note" src="assets/img/handwrite-1.png" alt="">
-          </div>
-          <div class="locpair__content">
-            <div class="loccard__group">
-              <p class="loccard__label">Address</p>
-              <h2 class="script loccard__title" id="loc-title">The Peacock Grove</h2>
-              <address>On, Byalkere Rd, Yelahanka, Bengaluru, Bylakere, Karnataka 560090, India</address>
-              <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Peacock%20Grove%2C%20Byalkere%20Rd%2C%20Yelahanka%2C%20Bengaluru%2C%20Bylakere%2C%20Karnataka%20560090%2C%20India" target="_blank" rel="noopener">
-                Open in Google Maps
-              </a>
-            </div>
-          </div>
+    <article class="loccard reveal">
+      <!-- All the practical detail. On a laptop this is the left half of one
+           postcard; on a phone it becomes its own card. -->
+      <div class="loccard__info">
+        <div class="loccard__group">
+          <p class="loccard__label">Address</p>
+          <h2 class="script loccard__title" id="loc-title">The Peacock Grove</h2>
+          <address>On, Byalkere Rd, Yelahanka, Bengaluru, Bylakere, Karnataka 560090, India</address>
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Peacock%20Grove%2C%20Byalkere%20Rd%2C%20Yelahanka%2C%20Bengaluru%2C%20Bylakere%2C%20Karnataka%20560090%2C%20India" target="_blank" rel="noopener">
+            Open in Google Maps
+          </a>
         </div>
 
-        <div class="locpair">
-          <div class="locpair__media">
-            <img class="loccard__signoff" src="assets/img/handwrite-2.png" alt="">
-          </div>
-          <div class="locpair__content">
-            <div class="loccard__group">
-              <p class="loccard__label">Accommodation</p>
-              <p class="loccard__blurb">If you need accomodation, please let us know. We would be very glad to arrange it!</p>
-            </div>
-            <div class="loccard__group">
-              <p class="loccard__label">RSVP</p>
-              <p class="loccard__blurb">Please let us know if you will be joining us!</p>
-              <label class="loccard__field" for="rsvp-names">Your name, and anyone joining you</label>
-              <input class="rsvp__input" id="rsvp-names" type="text"
-                     placeholder="Your name and guests" autocomplete="name">
-              <a class="btn rsvp__btn" id="rsvp-send"
-                 data-whatsapp="16043606514"
-                 href="https://wa.me/16043606514?text=Hi%21%20I%27d%20like%20to%20RSVP%20for%20Varsha%20%26%20Sanjay%27s%20wedding."
-                 target="_blank" rel="noopener">
-                RSVP on WhatsApp
-              </a>
-            </div>
-          </div>
+        <div class="loccard__group">
+          <p class="loccard__label">Accommodation</p>
+          <p class="loccard__blurb">If you need accommodation, please let us know - we would be very glad to arrange it.</p>
         </div>
+
+        <!-- The RSVP button is a plain WhatsApp link carrying a generic
+             message, so it works even with JavaScript off. When JS is on,
+             main.js folds whatever is typed in the box into the message.
+             To change the number, edit BOTH the data-whatsapp attribute and
+             the href below (country code first, no +, spaces or dashes). -->
+        <div class="loccard__group">
+          <p class="loccard__label">RSVP</p>
+          <p class="loccard__blurb">Please let us know if you will be joining us!</p>
+          <input class="rsvp__input" id="rsvp-names" type="text"
+                 aria-label="Your name, and anyone joining you"
+                 placeholder="Name and guests" autocomplete="name">
+          <a class="btn rsvp__btn" id="rsvp-send"
+             data-whatsapp="16043606514"
+             href="https://wa.me/16043606514?text=Hi%21%20I%27d%20like%20to%20RSVP%20for%20Varsha%20%26%20Sanjay%27s%20wedding."
+             target="_blank" rel="noopener">
+            RSVP on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Both handwritten notes, kept together. Right half on a laptop,
+           its own overlapping card on a phone. -->
+      <div class="loccard__hand">
+        <img class="loccard__note" src="assets/img/handwrite-1.png" alt="">
+        <img class="loccard__signoff" src="assets/img/handwrite-2.png" alt="">
       </div>
     </article>
   </div>

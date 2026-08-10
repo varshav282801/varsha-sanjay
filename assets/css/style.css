@@ -520,71 +520,60 @@ a { color: var(--accent); }
    match the two day cards. It has no header — the venue name sits in the
    right half. Left half is the RSVP, right half is venue and accommodation. */
 
-.loccard__stack {
+/* ---- the location postcard ---------------------------------------------
+   Laptop: one postcard — all the detail on the left, both handwritten notes
+   together on the right, with a rule between them and a stamp in the corner.
+   Phone: the two halves split into two separate cards, tilted and lapping
+   over each other, with no rule. See the media query further down.
+   ------------------------------------------------------------------------ */
+
+.loccard {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(1rem, 4vw, 3rem);
-  align-items: stretch;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: center;
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset,
+              0 14px 34px -18px rgba(42,35,32,0.55);
 }
-.loccard__stack::before {
+
+/* the postcard's centre rule */
+.loccard::before {
   content: "";
   position: absolute;
-  top: clamp(0.4rem, 2vh, 1rem);
-  bottom: clamp(0.4rem, 2vh, 1rem);
+  top: clamp(1rem, 3vw, 2.25rem);
+  bottom: clamp(1rem, 3vw, 2.25rem);
   left: 50%;
   width: 1px;
   background: var(--hairline);
   pointer-events: none;
 }
 
-.locpair { display: contents; }
-
-/* Each pair contributes media on the left and content on the right. */
-.locpair__media,
-.locpair__content {
+.loccard__info {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.1rem, 4.5vw, 2rem);
+  gap: clamp(1.1rem, 3.5vw, 1.9rem);
 }
-.locpair__media {
-  position: relative;
+
+.loccard__hand {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding-block: clamp(0.8rem, 2vw, 1.6rem);
-}
-.locpair__media .loccard__group {
-  width: 100%;
-  max-width: 100%;
-}
-.loccard__note {
-  display: block;
-  width: 100%;
-  height: auto;
-  transform: rotate(-11deg);
-  transform-origin: center;
-  margin-bottom: clamp(0.8rem, 2vw, 1.4rem);
-}
-.locpair__media .loccard__note { margin-bottom: 0; }
-
-@media (min-width: 780px) {
-  .locpair__media .loccard__note { transform: translateY(130px) rotate(-11deg); }
+  gap: clamp(1.5rem, 5vw, 2.75rem);
 }
 
+.loccard__note,
 .loccard__signoff {
   display: block;
   width: 100%;
-  max-width: 56%;
   height: auto;
-  transform: rotate(-11deg);
   transform-origin: center;
-  margin-inline: auto;
-  margin-top: clamp(0.4rem, 1.4vw, 0.9rem);
 }
-.locpair__media .loccard__signoff {
-  margin-top: clamp(0.2rem, 0.7vw, 0.45rem);
-  margin-inline: auto;
-}
+.loccard__note    { transform: rotate(-9deg); }
+.loccard__signoff { max-width: 66%; margin-inline: auto; transform: rotate(-7deg); }
 
 .loccard__title {
   /* same size as the itinerary event headers — see .tl__text h3 */
@@ -631,6 +620,9 @@ a { color: var(--accent); }
 
 .rsvp__input {
   width: 100%;
+  /* the visible label was removed, so the input carries the gap that used
+     to sit above it */
+  margin-top: clamp(0.7rem, 2.5vw, 1.1rem);
   padding: 0.55rem 0.65rem;
   font-family: var(--body);
   font-size: clamp(0.74rem, 0.7rem + 0.18vw, 0.88rem);
@@ -648,73 +640,66 @@ a { color: var(--accent); }
   outline-offset: 2px;
 }
 
-/* Phones: one column. The halves are too narrow to split a form and a
-   street address across, so it reads straight down — address, accommodation,
-   RSVP. The card also drops to its own shorter portrait ratio, since forcing
-   it to the day cards' 1.7 left a void in the middle. */
+/* Phones: one postcard can't hold two usable halves at 350px, so the two
+   halves become two cards — the detail on one, both handwritten notes on the
+   other — tilted opposite ways and lapping over each other. No centre rule. */
 @media (max-width: 779px) {
   .loccard {
-    min-height: auto;
+    display: block;
     background: none;
     border: 0;
     box-shadow: none;
     padding: 0;
   }
-  .loccard__stack {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(0.9rem, 4vw, 1.4rem);
-  }
-  .loccard__stack::before { display: none; }
+  .loccard::before { display: none; }   /* no rule on phones */
 
-  .locpair {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(0.7rem, 3vw, 1.1rem);
-    align-items: center;
-    min-height: calc((100vw - 2.5rem) * 0.72);
-    padding: clamp(0.9rem, 3.8vw, 1.2rem);
+  .loccard__info,
+  .loccard__hand {
+    width: 94%;
+    margin-inline: auto;
+    padding: clamp(1.2rem, 4.5vw, 1.6rem);
     background: var(--paper);
     border: 1px solid var(--hairline);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 18px 40px -28px rgba(42,35,32,0.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset,
+                0 14px 34px -18px rgba(42,35,32,0.55);
   }
-  .locpair::before {
+
+  /* the information sits square — it's the part people read */
+  .loccard__info {
+    position: relative;
+    z-index: 1;
+    padding-bottom: clamp(1.8rem, 6vw, 2.4rem);
+  }
+
+  /* the notes card is smaller, framed, and tipped clockwise so it reads as
+     a card dropped on top of the one above */
+  .loccard__hand {
+    position: relative;
+    z-index: 2;
+    width: 82%;
+    rotate: 3deg;
+    margin-top: -1.1rem;
+    padding: clamp(1.1rem, 4vw, 1.5rem);
+    padding-top: clamp(2.2rem, 8vw, 3rem);
+    border: 1px solid rgba(42, 35, 32, 0.35);
+    gap: clamp(1.1rem, 4.5vw, 1.6rem);
+  }
+
+  /* a second hairline set in from the edge, so the note reads as a framed
+     card rather than a plain rectangle */
+  .loccard__hand::before {
     content: "";
     position: absolute;
-    top: clamp(0.35rem, 1.6vw, 0.7rem);
-    bottom: clamp(0.35rem, 1.6vw, 0.7rem);
-    left: 50%;
-    width: 1px;
-    background: var(--hairline);
+    inset: clamp(0.3rem, 1.4vw, 0.5rem);
+    border: 1px solid rgba(42, 35, 32, 0.22);
     pointer-events: none;
   }
 
-  .locpair__media,
-  .locpair__content {
-    justify-content: center;
-    align-items: stretch;
-    padding-block: 0;
-    gap: clamp(0.8rem, 3vw, 1.1rem);
-  }
+  .loccard__blurb,
+  .loccard address { max-width: none; }
 
-  .locpair__media .loccard__group { max-width: 100%; }
-
-  .locpair__media .loccard__note {
-    max-width: 100%;
-    margin: 0 auto;
-    transform: rotate(-11deg);
-  }
-  .locpair__media .loccard__signoff {
-    max-width: 72%;
-    margin: 0 auto;
-    transform: rotate(-11deg);
-  }
-
-  .locpair__content .loccard__blurb,
-  .locpair__content address {
-    max-width: none;
-  }
+  .loccard__note { max-width: 92%; margin-inline: auto; }
+  .loccard__signoff { max-width: 62%; }
 }
 
 /* Both buttons fill their half — the columns are narrow on a phone and a

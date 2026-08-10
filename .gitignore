@@ -6,3 +6,7 @@
 # aren't used by the site (the optimised backdrop-*.jpg files are).
 assets/img/6116187327232151015.jpg
 assets/img/6321022615455207847.jpg
+
+# Full-resolution hero source (2.8 MB) — the optimised hero-image-2.jpg is
+# what the site serves.
+assets/img/hero-image-2.PNG
