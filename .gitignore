@@ -10,3 +10,7 @@ assets/img/6321022615455207847.jpg
 # Full-resolution source of the previous hero (2.8 MB). Superseded by the
 # hero-image.jpg that came in via PR #2, but kept out of the repo either way.
 assets/img/hero-image-2.PNG
+
+# Full-resolution source of the current hero (2.6 MB) — the site serves the
+# optimised hero-image.jpg built from it.
+assets/img/hero-img-3.png
